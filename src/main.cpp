@@ -13,7 +13,6 @@ int intersectionsCounter = 0;
 
 void setup() {
     Serial.begin(9600);
-
     robot.begin();
 }
 
@@ -47,6 +46,8 @@ void loop() {
     }
 
     if (intersectionsCounter >= 3 && !robot.isLoaded) {
+        //TODO: Add sending command to scan QR code
+        //TODO: Save last intersection where robot grabed last item, so we can skip scaning unwanted items
         robot.grab();
     }
 
@@ -55,6 +56,7 @@ void loop() {
     }
 
     if (intersectionsCounter >= 10) {
+        //TODO: Add lap counter (how many items left to pick up)
         intersectionsCounter = 0;
         robot.unload();
     }
