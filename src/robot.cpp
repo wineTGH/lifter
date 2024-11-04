@@ -38,6 +38,10 @@ void Robot::turnRight() {
     this->servoRight.write(120);
 }
 
+void Robot::turnAround() {
+    //TODO: Implement
+}
+
 void Robot::forward() {
     this->servoLeft.write(120);
     this->servoRight.write(120);
@@ -62,6 +66,21 @@ void Robot::grab() {
     }
 
     this->servoLift.write(90);
+}
+
+SensorsState Robot::getSensorsState() {
+    if (!digitalRead(SENSOR_LEFT_PIN) && !digitalRead(SENSOR_MIDDLE_PIN) && !digitalRead(SENSOR_RIGHT_PIN)) {
+        return SensorsState::Intersection;
+
+    } else if (!digitalRead(SENSOR_LEFT_PIN)) {
+        return SensorsState::Right;
+
+    } else if (!digitalRead(SENSOR_RIGHT_PIN)) {
+        return SensorsState::Left;
+
+    } else {
+        return SensorsState::Forward;
+    }
 }
 
 int Robot::readStoperValue(int pin) {

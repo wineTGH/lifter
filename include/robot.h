@@ -1,6 +1,13 @@
 #pragma once
 #include <Servo.h>
 
+enum SensorsState {
+    Forward,
+    Right,
+    Left,
+    Intersection,
+};
+
 class Robot {
     public:
         bool isLoaded = false;
@@ -8,10 +15,13 @@ class Robot {
         void begin();
         void turnRight();
         void turnLeft();
+        void turnAround();
         void forward();
         void stop();
         void grab();
         void reset();
+
+        SensorsState getSensorsState();
 
     private:
         Servo servoRight;
