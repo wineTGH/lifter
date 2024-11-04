@@ -65,8 +65,8 @@ void Robot::stop() {
 }
 
 void Robot::grab() {
-    
     this->stop();
+    
     while (this->readStoperValue(STOPER_PLATFORM_FORWARD_PIN)) {
         this->servoPlatform.write(30);
     }
@@ -83,6 +83,8 @@ void Robot::grab() {
 }
 
 void Robot::unload() {
+    this->stop();
+
     if (this->isLoaded) {
         this->reset();
         delay(200);
