@@ -19,7 +19,7 @@ Command waitForCommand(String command) {
 
 Command parseCommand(String rawCommand) {
     auto command = rawCommand.substring(0, rawCommand.indexOf(";"));
-    auto arg = rawCommand.substring(rawCommand.indexOf(";"), rawCommand.length()).toInt();
+    auto arg = rawCommand.substring(rawCommand.indexOf(";") + 1, rawCommand.length()).toInt();
 
     Command parsedCommand(command, arg);
     return parsedCommand;

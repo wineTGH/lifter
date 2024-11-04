@@ -40,7 +40,7 @@ void loop() {
     #endif
 
     #ifdef DEBUG_COMMANDS
-        auto parsedCommand = parseCommand("start;4\n");
+        auto parsedCommand = parseCommand("end;5\n");
         Serial.println("======== Parsed ========");
         Serial.print("Command: ");
         Serial.println(parsedCommand.command);
@@ -53,6 +53,14 @@ void loop() {
         Serial.print(stringifiedCommand);
 
         delay(300);
+
+        Serial.print("waiting For command: ");
+        auto recievedCommand = waitForCommand("start");
+        Serial.println("======== Parsed ========");
+        Serial.print("Command: ");
+        Serial.println(recievedCommand.command);
+        Serial.print("Args: ");
+        Serial.println(recievedCommand.arg);
     #endif
 
     switch (sensorsState) {
