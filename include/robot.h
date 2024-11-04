@@ -3,11 +3,15 @@
 
 class Robot {
     public:
+        bool isLoaded = false;
+
         void begin();
         void turnRight();
         void turnLeft();
         void forward();
         void stop();
+        void grab();
+        void reset();
 
     private:
         Servo servoRight;
