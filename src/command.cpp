@@ -1,16 +1,11 @@
 #include "command.h"
 
-Command waitForCommand(Command command) {
+Command waitForCommand(String command) {
     byte attempts = 0;
     while (attempts < 15) {
         Command incomingCommand = parseCommand(readCommand());
 
-        if (incomingCommand.command != command.command) {
-            attempts++;
-            continue;
-        }
-
-        if (incomingCommand.arg != command.arg && incomingCommand.arg != -1) {
+        if (!incomingCommand.command.equals(command)) {
             attempts++;
             continue;
         }

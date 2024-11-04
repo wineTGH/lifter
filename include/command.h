@@ -14,6 +14,6 @@ class Command {
 
 String readCommand();
 Command parseCommand(String rawCommand);
-Command waitForCommand(Command command);
+Command waitForCommand(String command);
 String stringifyCommand(Command command);
 Command sendCommand(Command command);
