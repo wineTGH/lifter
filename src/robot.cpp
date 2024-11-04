@@ -2,7 +2,7 @@
 #include "robot.h"
 #include "defenitions.h"
 
-Robot::Robot() {
+void Robot::begin() {
     // Сервоприводы
     this->servoRight.attach(SERVO_RIGHT_PIN);
     this->servoLeft.attach(SERVO_LEFT_PIN);

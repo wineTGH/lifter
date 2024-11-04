@@ -4,6 +4,8 @@
 #include "config.h"
 #include "robot.h"
 
+Robot robot;
+
 void setup() {
     Serial.begin(9600);
 
@@ -17,6 +19,8 @@ void setup() {
     pinMode(STOPER_LIFT_UP_PIN, INPUT);
     pinMode(STOPER_PLATFORM_BACK_PIN, INPUT);
     pinMode(STOPER_PLATFORM_FORWARD_PIN, INPUT);
+
+    robot.begin();
 }
 
 
@@ -57,4 +61,6 @@ void loop() {
     #ifdef DEBUG_STOPERS
         debugStopers();
     #endif
+
+    robot.forward();
 }
