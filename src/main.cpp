@@ -27,6 +27,18 @@ void loop() {
 
     auto sensorsState = robot.getSensorsState();
 
+    #ifdef DEBUG_STATE
+        Serial.println("======== State ========");
+        Serial.print("Sensors state: ");
+        Serial.println(sensorsState);
+        Serial.print("Intersections Counter: ");
+        Serial.println(intersectionsCounter);
+        Serial.print("Robot is loaded? ");
+        Serial.println(robot.isLoaded);
+        delay(300);
+    #endif
+
+
     switch (sensorsState) {
         case SensorsState::Intersection:
             intersectionsCounter++;
