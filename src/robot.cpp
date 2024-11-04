@@ -9,6 +9,18 @@ void Robot::begin() {
     this->servoLeft.attach(SERVO_LEFT_PIN);
     this->servoLift.attach(SERVO_LIFT_PIN);
     this->servoPlatform.attach(SERVO_PLATFORM_PIN);
+
+    // Датчики линии
+    pinMode(SENSOR_RIGHT_PIN, INPUT);
+    pinMode(SENSOR_MIDDLE_PIN, INPUT);
+    pinMode(SENSOR_LEFT_PIN, INPUT);
+
+    // Концевики
+    pinMode(STOPER_LIFT_DOWN_PIN, INPUT);
+    pinMode(STOPER_LIFT_UP_PIN, INPUT);
+    pinMode(STOPER_PLATFORM_BACK_PIN, INPUT);
+    pinMode(STOPER_PLATFORM_FORWARD_PIN, INPUT);
+
     #ifndef DISABLE_MANIPULATOR_RESET
         this->reset();
     #endif
