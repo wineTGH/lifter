@@ -45,6 +45,8 @@ void loop() {
         Serial.println(sensorsState);
         Serial.print("Intersections Counter: ");
         Serial.println(intersectionsCounter);
+        Serial.print("Total Laps");
+        Serial.println(totalLaps);
         Serial.print("Robot is loaded? ");
         Serial.println(robot.isLoaded);
         delay(300);
