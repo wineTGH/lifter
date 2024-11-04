@@ -78,6 +78,18 @@ void Robot::grab() {
     }
 
     this->servoLift.write(90);
+
+    this->isLoaded = true;
+}
+
+void Robot::unload() {
+    if (this->isLoaded) {
+        this->reset();
+        delay(200);
+        this->isLoaded = false;
+    }
+    
+    this->turnAround();
 }
 
 SensorsState Robot::getSensorsState() {

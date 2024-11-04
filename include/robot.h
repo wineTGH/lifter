@@ -19,6 +19,7 @@ class Robot {
         void forward();
         void stop();
         void grab();
+        void unload();
         void reset();
 
         SensorsState getSensorsState();
