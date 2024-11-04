@@ -3,6 +3,7 @@
 #include "defenitions.h"
 #include "config.h"
 #include "robot.h"
+#include "command.h"
 
 #if defined(DEBUG_SENSORS) || defined(DEBUG_STOPERS)
     #include "debug.h"
@@ -38,6 +39,21 @@ void loop() {
         delay(300);
     #endif
 
+    #ifdef DEBUG_COMMANDS
+        auto parsedCommand = parseCommand("start;4\n");
+        Serial.println("======== Parsed ========");
+        Serial.print("Command: ");
+        Serial.println(parsedCommand.command);
+        Serial.print("Args: ");
+        Serial.println(parsedCommand.arg);
+
+        auto stringifiedCommand = stringifyCommand(parsedCommand);
+        Serial.println("======== Parsed ========");
+        Serial.print("Command: ");
+        Serial.print(stringifiedCommand);
+
+        delay(300);
+    #endif
 
     switch (sensorsState) {
         case SensorsState::Intersection:

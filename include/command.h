@@ -4,7 +4,12 @@
 class Command {
     public:
         String command;
-        int arg;
+        int arg = -1;
+
+        Command(String command, int arg = -1) {
+            this->command = command;
+            this->arg = arg;
+        }
 };
 
 String readCommand();
