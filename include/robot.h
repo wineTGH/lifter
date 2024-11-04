@@ -10,9 +10,10 @@ class Robot {
         
         Robot();
 
-        void turn_right();
-        void turn_left();
+        void turnRight();
+        void turnLeft();
         void forward();
+        void stop();
 
     private:
         int readStoperValue(int pin);

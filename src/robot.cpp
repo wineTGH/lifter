@@ -10,16 +10,24 @@ Robot::Robot() {
     this->servoPlatform.attach(SERVO_PLATFORM_PIN);
 }
 
-void Robot::turn_left() {
-
+void Robot::turnLeft() {
+    this->servoLeft.write(120);
+    this->servoRight.write(100);
 }
 
-void Robot::turn_right() {
-
+void Robot::turnRight() {
+    this->servoLeft.write(100);
+    this->servoRight.write(120);
 }
 
 void Robot::forward() {
+    this->servoLeft.write(120);
+    this->servoRight.write(120);
+}
 
+void Robot::stop() {
+    this->servoLeft.write(90);
+    this->servoRight.write(90);
 }
 
 int Robot::readStoperValue(int pin) {
