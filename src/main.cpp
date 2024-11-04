@@ -10,15 +10,17 @@
 #endif
 
 Robot robot;
+CommandManager cmd(&Serial);
 
 int intersectionsCounter = 0;
 int totalLaps = 0;
+
 
 void setup() {
     Serial.begin(9600);
     robot.begin();
 
-    auto startCommand = waitForCommand("start");
+    auto startCommand = cmd.waitForCommand("start");
     totalLaps = startCommand.arg;
 }
 
@@ -49,27 +51,31 @@ void loop() {
     #endif
 
     #ifdef DEBUG_COMMANDS
-        auto parsedCommand = parseCommand("end;5\n");
+        auto parsedCommand = cmd.parseCommand("end;5\n");
         Serial.println("======== Parsed ========");
         Serial.print("Command: ");
         Serial.println(parsedCommand.command);
         Serial.print("Args: ");
         Serial.println(parsedCommand.arg);
 
-        auto stringifiedCommand = stringifyCommand(parsedCommand);
-        Serial.println("======== Parsed ========");
+        auto stringifiedCommand = cmd.stringifyCommand(parsedCommand);
+        Serial.println("======== Stringified ========");
         Serial.print("Command: ");
         Serial.print(stringifiedCommand);
 
         delay(300);
 
         Serial.print("waiting For command: ");
-        auto recievedCommand = waitForCommand("start");
+        auto recievedCommand = cmd.waitForCommand("start");
         Serial.println("======== Parsed ========");
         Serial.print("Command: ");
         Serial.println(recievedCommand.command);
         Serial.print("Args: ");
         Serial.println(recievedCommand.arg);
+    #endif
+
+    #ifdef DISABLE_MOVEMENT
+        return;
     #endif
 
     switch (sensorsState) {
@@ -93,7 +99,7 @@ void loop() {
     if (intersectionsCounter >= 3 && !robot.isLoaded) {
         //TODO: Save last intersection where robot grabed last item, so we can skip scaning unwanted items
         Command scanCommad ("scan");
-        if (sendCommand(scanCommad).command.equals("grab")) {
+        if (cmd.sendCommand(scanCommad).command.equals("grab")) {
             robot.grab();
         }
     }
@@ -110,6 +116,6 @@ void loop() {
 
     if (totalLaps <= 0) {
         Command stopCommand ("end");
-        sendCommand(stopCommand);
+        cmd.sendCommand(stopCommand);
     }
 }

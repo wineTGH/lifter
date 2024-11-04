@@ -1,6 +1,6 @@
 #include "command.h"
 
-Command waitForCommand(String command) {
+Command CommandManager::waitForCommand(String command) {
     byte attempts = 0;
     while (attempts < 15) {
         Command incomingCommand = parseCommand(readCommand());
@@ -17,7 +17,7 @@ Command waitForCommand(String command) {
     return failCommand;
 }
 
-Command parseCommand(String rawCommand) {
+Command CommandManager::parseCommand(String rawCommand) {
     auto command = rawCommand.substring(0, rawCommand.indexOf(";"));
     auto arg = rawCommand.substring(rawCommand.indexOf(";") + 1, rawCommand.length()).toInt();
 
@@ -25,16 +25,16 @@ Command parseCommand(String rawCommand) {
     return parsedCommand;
 }
 
-String stringifyCommand(Command command) {
+String CommandManager::stringifyCommand(Command command) {
     return command.command + ";" + String(command.arg) + "\n";
 }
 
-Command sendCommand(Command command) {
+Command CommandManager::sendCommand(Command command) {
     Serial.print(stringifyCommand(command));
     return parseCommand(readCommand());
 }
 
-String readCommand() {
+String CommandManager::readCommand() {
     while (true) {
         if (Serial.available() > 0) {
             return Serial.readStringUntil('\n');

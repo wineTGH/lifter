@@ -12,8 +12,15 @@ class Command {
         }
 };
 
-String readCommand();
-Command parseCommand(String rawCommand);
-Command waitForCommand(String command);
-String stringifyCommand(Command command);
-Command sendCommand(Command command);
+class CommandManager {
+    public:
+        HardwareSerial* serial;
+        CommandManager(HardwareSerial *serial) {
+            this->serial = serial;
+        };
+        String readCommand();
+        Command parseCommand(String rawCommand);
+        Command waitForCommand(String command);
+        String stringifyCommand(Command command);
+        Command sendCommand(Command command);
+};
