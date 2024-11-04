@@ -29,7 +29,7 @@ String CommandManager::stringifyCommand(Command command) {
     return command.command + ";" + String(command.arg) + "\n";
 }
 
-Command CommandManager::sendCommand(Command command, bool waitForResponse = true) {
+Command CommandManager::sendCommand(Command command, bool waitForResponse) {
     Serial.print(stringifyCommand(command));
     if (waitForResponse) {
         return parseCommand(readCommand());
