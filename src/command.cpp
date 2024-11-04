@@ -29,9 +29,14 @@ String CommandManager::stringifyCommand(Command command) {
     return command.command + ";" + String(command.arg) + "\n";
 }
 
-Command CommandManager::sendCommand(Command command) {
+Command CommandManager::sendCommand(Command command, bool waitForResponse = true) {
     Serial.print(stringifyCommand(command));
-    return parseCommand(readCommand());
+    if (waitForResponse) {
+        return parseCommand(readCommand());
+    }
+
+    Command emptyCommand ("empty");
+    return emptyCommand;
 }
 
 String CommandManager::readCommand() {

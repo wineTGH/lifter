@@ -116,6 +116,6 @@ void loop() {
 
     if (totalLaps <= 0) {
         Command stopCommand ("end");
-        cmd.sendCommand(stopCommand);
+        cmd.sendCommand(stopCommand, false);
     }
 }

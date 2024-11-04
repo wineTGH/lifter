@@ -22,5 +22,5 @@ class CommandManager {
         Command parseCommand(String rawCommand);
         Command waitForCommand(String command);
         String stringifyCommand(Command command);
-        Command sendCommand(Command command);
+        Command sendCommand(Command command, bool waitForResponse = true);
 };
