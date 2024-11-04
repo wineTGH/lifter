@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "robot.h"
 #include "defenitions.h"
+#include "config.h"
 
 void Robot::begin() {
     // Сервоприводы
@@ -8,7 +9,9 @@ void Robot::begin() {
     this->servoLeft.attach(SERVO_LEFT_PIN);
     this->servoLift.attach(SERVO_LIFT_PIN);
     this->servoPlatform.attach(SERVO_PLATFORM_PIN);
-    this->reset();
+    #ifndef DISABLE_MANIPULATOR_RESET
+        this->reset();
+    #endif
 }
 
 void Robot::reset() {
